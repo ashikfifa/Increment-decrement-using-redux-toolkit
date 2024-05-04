@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import "./App.css";
+import "./App.scss";
 import { decrement, increment } from "./features/counterSlice/counterSlice";
 
 function App() {
@@ -18,20 +18,22 @@ function App() {
   const totalCount = counter.reduce((sum, current) => sum + current.value, 0);
 
   return (
-    <>
+    <div className="appParent">
       {counter?.map((counterIndex) => (
         <div key={counterIndex.id} className="cardParent">
-          {counterIndex.value}
-          <button onClick={() => handleIncrement(counterIndex.id)}>
-            Increment
-          </button>
-          <button onClick={() => handleDecrement(counterIndex.id)}>
-            Decrement
-          </button>
+          <div> {counterIndex.value} </div>
+          <div className="btnFlex">
+            <button onClick={() => handleIncrement(counterIndex.id)}>
+              Increment
+            </button>
+            <button onClick={() => handleDecrement(counterIndex.id)}>
+              Decrement
+            </button>
+          </div>
         </div>
       ))}
-      Total Count is : {totalCount}
-    </>
+      <p className="totalCount"> Total Count is : {totalCount}</p>
+    </div>
   );
 }
 
